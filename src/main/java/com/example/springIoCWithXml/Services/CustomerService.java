@@ -11,7 +11,6 @@ public class CustomerService {
     }
 
     public void add(){
-        CustomerDao customerDao = new CustomerDao();
         customerDao.add();
     }
 

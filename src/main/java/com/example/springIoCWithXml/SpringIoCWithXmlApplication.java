@@ -1,6 +1,7 @@
 package com.example.springIoCWithXml;
 
 import com.example.springIoCWithXml.Dao.CustomerDao;
+import com.example.springIoCWithXml.Dao.MySqlCustomerDao;
 import com.example.springIoCWithXml.Services.CustomerService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +12,7 @@ public class SpringIoCWithXmlApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringIoCWithXmlApplication.class, args);
 
-		CustomerService customerService= new CustomerService(new CustomerDao());
+		CustomerService customerService= new CustomerService(new MySqlCustomerDao());
 		customerService.add();
 
 	}
