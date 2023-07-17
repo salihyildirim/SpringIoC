@@ -6,6 +6,16 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
 
 
+    <bean class="com.example.springIoCWithXml.Dao.MySqlCustomerDao" id="mySqlCustomerDao">
+    </bean>
 
+    <bean class="com.example.springIoCWithXml.Dao.OracleCustomerDao" id="oracleCustomerDao">
+        <property name="connectionString" value="//OracleConnectionString"></property>
+    </bean>
+
+    <bean class="com.example.springIoCWithXml.Services.CustomerService" id="customerService">
+        <constructor-arg ref="oracleCustomerDao"></constructor-arg>
+<!--           <property name="customerDao" ref="oracleCustomerDao" ></property> to setter injection-->
+    </bean>
 
 </beans>

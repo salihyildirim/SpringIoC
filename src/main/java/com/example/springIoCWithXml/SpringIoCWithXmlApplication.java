@@ -1,10 +1,12 @@
 package com.example.springIoCWithXml;
 
-import com.example.springIoCWithXml.Dao.CustomerDao;
-import com.example.springIoCWithXml.Dao.MySqlCustomerDao;
+import com.example.springIoCWithXml.Dao.ICustomerDao;
+import com.example.springIoCWithXml.Dao.OracleCustomerDao;
 import com.example.springIoCWithXml.Services.CustomerService;
+import com.example.springIoCWithXml.Services.ICustomerService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @SpringBootApplication
 public class SpringIoCWithXmlApplication {
@@ -12,8 +14,20 @@ public class SpringIoCWithXmlApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringIoCWithXmlApplication.class, args);
 
-		CustomerService customerService= new CustomerService(new MySqlCustomerDao());
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+
+		ICustomerService customerService= context.getBean("customerService",ICustomerService.class);
+
+		//CustomerService customerService= new CustomerService(context.getBean("oracleCustomerDao", ICustomerDao.class));
 		customerService.add();
+
+		OracleCustomerDao customerDao = context.getBean("oracleCustomerDao",OracleCustomerDao.class);
+		System.out.println(customerDao.getConnectionString());
+		OracleCustomerDao oracleCustomerDao = new OracleCustomerDao();
+		System.out.println(oracleCustomerDao.getConnectionString());
+
+
+
 
 	}
 
