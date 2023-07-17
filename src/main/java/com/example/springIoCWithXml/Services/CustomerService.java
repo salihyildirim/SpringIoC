@@ -3,9 +3,11 @@ package com.example.springIoCWithXml.Services;
 import com.example.springIoCWithXml.Dao.ICustomerDao;
 import com.example.springIoCWithXml.Dao.MySqlCustomerDao;
 import com.example.springIoCWithXml.Dao.OracleCustomerDao;
+import org.springframework.context.annotation.Bean;
 
 public class CustomerService implements ICustomerService {
-    private ICustomerDao customerDao;
+
+    private final ICustomerDao customerDao;
 
     public CustomerService(ICustomerDao customerDao) {
         this.customerDao = customerDao;

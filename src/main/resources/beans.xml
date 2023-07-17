@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
 
-    <bean class="com.example.springIoCWithXml.Dao.MySqlCustomerDao" id="mySqlCustomerDao">
-    </bean>
+    <context:property-placeholder location="classpath:values.properties"/> <!-- for values -->
+<!--    <context:component-scan base-package="com.example.springIoCWithXml"></context:component-scan> &lt;!&ndash; for anotions &ndash;&gt;-->
+
+<bean class="com.example.springIoCWithXml.Dao.MySqlCustomerDao" id="mySqlCustomerDao"></bean>
 
     <bean class="com.example.springIoCWithXml.Dao.OracleCustomerDao" id="oracleCustomerDao">
-        <property name="connectionString" value="//OracleConnectionString"></property>
+        <property name="connectionString" value="${database.ConnectionString}"></property>
     </bean>
 
     <bean class="com.example.springIoCWithXml.Services.CustomerService" id="customerService">

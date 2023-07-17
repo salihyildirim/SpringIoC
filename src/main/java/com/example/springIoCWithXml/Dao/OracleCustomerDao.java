@@ -1,5 +1,8 @@
 package com.example.springIoCWithXml.Dao;
 
+import org.springframework.stereotype.Component;
+
+@Component("oracleCustomerDao")
 public class OracleCustomerDao implements ICustomerDao{
 
     private String connectionString="sad";
